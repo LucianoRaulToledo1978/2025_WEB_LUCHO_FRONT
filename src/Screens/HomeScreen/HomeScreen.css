@@ -1,6 +1,6 @@
-/* === Estilo general === */
+/* === Estilo general tipo Slack === */
 body {
-  background-color: #f9f9fa;
+  background-color: #f8f8fa;
   font-family: 'Inter', 'Lato', 'Helvetica Neue', sans-serif;
   color: #1d1c1d;
   margin: 0;
@@ -9,49 +9,55 @@ body {
 
 /* === Contenedor principal === */
 .home-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* === Título principal === */
+/* === Título === */
 .home-container h1 {
   font-size: 2rem;
   color: #1d1c1d;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
 /* === Lista de workspaces === */
 .workspace-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 40px;
 }
 
-/* === Tarjetas de workspace === */
+/* === Tarjeta de workspace === */
 .workspace-card {
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(29, 28, 29, 0.06);
-  padding: 20px;
+  box-shadow: 0 4px 16px rgba(29, 28, 29, 0.08);
+  padding: 24px;
   text-align: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(97, 31, 105, 0.1);
 }
 
 .workspace-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(29, 28, 29, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(29, 28, 29, 0.15);
 }
 
-/* === Nombre del workspace === */
+/* === Título del workspace === */
 .workspace-card h2 {
   font-size: 1.2rem;
   color: #1d1c1d;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-weight: 600;
+  word-wrap: break-word;
 }
 
 /* === Botón "Entrar" === */
@@ -59,15 +65,16 @@ body {
   display: inline-block;
   background-color: #611f69;
   color: #fff;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .workspace-card a:hover {
   background-color: #4a154b;
+  transform: translateY(-2px);
 }
 
 /* === Enlace para crear nuevo workspace === */
@@ -78,13 +85,10 @@ body {
   color: #611f69;
   font-weight: 600;
   text-decoration: none;
-  padding: 10px 16px;
+  padding: 12px 20px;
   border-radius: 8px;
   transition: all 0.2s ease;
-  margin: 0 auto;
-  display: block;
   text-align: center;
-  width: fit-content;
 }
 
 .new-workspace-link:hover {
@@ -110,9 +114,36 @@ body {
 }
 
 /* === Responsivo === */
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 32px 16px;
+  }
+
+  .workspace-list {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .workspace-card {
+    padding: 18px;
+  }
+}
+
+/* Celulares (pantallas pequeñas) */
 @media (max-width: 480px) {
   .home-container {
-    padding: 24px 14px;
+    padding: 24px 12px;
+  }
+
+  .home-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .workspace-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .workspace-card {
@@ -121,5 +152,15 @@ body {
 
   .workspace-card h2 {
     font-size: 1rem;
+  }
+
+  .workspace-card a {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  .new-workspace-link {
+    width: 100%;
+    padding: 10px;
   }
 }

@@ -1,4 +1,4 @@
-/* === Estilo general Slack-like === */
+/* === Estilo general tipo Slack === */
 body {
   background-color: #f9f9fa;
   font-family: 'Inter', 'Lato', 'Helvetica Neue', sans-serif;
@@ -14,6 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 20px;
 }
 
 /* === Caja del formulario === */
@@ -25,6 +26,7 @@ body {
   width: 100%;
   max-width: 420px;
   text-align: center;
+  border: 1px solid rgba(97, 31, 105, 0.08);
 }
 
 /* === Título === */
@@ -49,6 +51,7 @@ body {
   font-size: 0.9rem;
   color: #616061;
   margin-bottom: 6px;
+  font-weight: 500;
 }
 
 /* === Inputs === */
@@ -73,7 +76,7 @@ body {
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -82,7 +85,7 @@ body {
 
 .create-box button:hover:not(:disabled) {
   background-color: #4a154b;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .create-box button:disabled {
@@ -90,23 +93,72 @@ body {
   cursor: not-allowed;
 }
 
-/* === Mensajes de error === */
+/* === Mensajes de error y carga === */
 .create-box .error-message {
   color: #e01e5a;
   font-weight: 500;
   margin-top: 10px;
 }
 
-/* === Estado de carga === */
 .create-box .loading {
   color: #611f69;
   font-weight: 500;
 }
 
+/* === Efectos de foco === */
+.create-box input::placeholder {
+  color: #a3a3a3;
+}
+
 /* === Responsivo === */
-@media (max-width: 480px) {
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 768px) {
+  .create-container {
+    height: auto;
+    padding: 60px 20px;
+  }
+
   .create-box {
-    margin: 0 16px;
-    padding: 30px 20px;
+    padding: 32px 24px;
+    max-width: 380px;
+  }
+
+  .create-box h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Celulares (pantallas pequeñas) */
+@media (max-width: 480px) {
+  .create-container {
+    padding: 40px 12px;
+  }
+
+  .create-box {
+    padding: 28px 20px;
+    margin: 0 8px;
+  }
+
+  .create-box h1 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  .create-box input {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+
+  .create-box button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+/* === Pantallas muy grandes === */
+@media (min-width: 1200px) {
+  .create-box {
+    max-width: 480px;
   }
 }

@@ -1,3 +1,4 @@
+/* === Estilo general estilo Slack oscuro === */
 .invite-container {
   display: flex;
   flex-direction: column;
@@ -5,52 +6,80 @@
   background-color: #1a1d21;
   color: #e3e3e3;
   border: 1px solid #2e3136;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 18px;
   max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .invite-container:hover {
   border-color: #6166dc;
 }
 
+/* === Botón principal para abrir el formulario === */
+.invite-button {
+  background-color: #3f46c3;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s;
+}
+
+.invite-button:hover {
+  background-color: #565bdb;
+  transform: translateY(-1px);
+}
+
+/* === Formulario === */
 .invite-container form {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
+  animation: fadeIn 0.3s ease;
 }
 
+/* === Input === */
 .invite-container input {
   background-color: #222529;
   color: #f0f0f0;
   border: 1px solid #3a3f45;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 10px;
   font-size: 15px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.invite-container input::placeholder {
+  color: #a1a1a5;
 }
 
 .invite-container input:focus {
   border-color: #6166dc;
+  box-shadow: 0 0 0 2px rgba(97, 102, 220, 0.25);
 }
 
+/* === Botones === */
 .invite-container button {
   background-color: #6166dc;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 10px 14px;
   cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.1s;
 }
 
-.invite-container button:hover {
+.invite-container button:hover:not(:disabled) {
   background-color: #7b7ff2;
+  transform: translateY(-1px);
 }
 
 .invite-container button:disabled {
@@ -58,6 +87,7 @@
   cursor: not-allowed;
 }
 
+/* === Botón cancelar === */
 .invite-container .cancel-btn {
   background-color: transparent;
   color: #bcbec4;
@@ -69,6 +99,7 @@
   border-color: #6166dc;
 }
 
+/* === Mensajes === */
 .invite-container .error-msg {
   color: #ff5e5e;
   font-size: 14px;
@@ -81,17 +112,59 @@
   margin-top: 4px;
 }
 
-.invite-button {
-  background-color: #3f46c3;
-  color: white;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+/* === Animación === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.invite-button:hover {
-  background-color: #565bdb;
+/* === Responsivo === */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .invite-container {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .invite-container input {
+    font-size: 0.95rem;
+  }
+
+  .invite-container button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .invite-container {
+    padding: 14px 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .invite-container input {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+
+  .invite-container button {
+    padding: 9px 10px;
+    font-size: 0.9rem;
+  }
+
+  .invite-button {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-size: 1rem;
+  }
 }
