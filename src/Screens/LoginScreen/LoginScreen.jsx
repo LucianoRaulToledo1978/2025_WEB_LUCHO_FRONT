@@ -5,6 +5,7 @@ import useForm from '../../hooks/useForm.jsx'
 import {login} from '../../services/authService.js'
 import { useNavigate } from 'react-router'
 import LOCALSTORAGE_KEYS from '../../constants/localstorage.js'
+import './LoginScreen.css'
 
 const FORM_FIELDS = {
     EMAIL: 'email',
@@ -59,7 +60,8 @@ export const LoginScreen = () => {
     )
 
     return (
-        <div>
+        <div className="login-container">
+            <div className="login-box">
             <h1>Iniciar Sesión</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -93,9 +95,11 @@ export const LoginScreen = () => {
                         </>
                 }
                 {
-                    error && <span style={{ color: 'red' }}>{error.message}</span>
+                    error && <span className="error-message">{error.message}</span>
+                    /*error && <span style={{ color: 'red' }}>{error.message}</span>*/
                 }
             </form>
+        </div>
         </div>
     )
 }

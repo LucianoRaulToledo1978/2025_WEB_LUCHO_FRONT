@@ -1,0 +1,110 @@
+/* === Estilo general inspirado en Slack === */
+body {
+  background-color: #f9f9fa;
+  font-family: 'Inter', 'Lato', 'Helvetica Neue', sans-serif;
+  color: #1d1c1d;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Contenedor principal === */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* === Caja del formulario === */
+.login-box {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(29, 28, 29, 0.08);
+  padding: 40px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* === Título === */
+.login-box h1 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: #1d1c1d;
+  font-weight: 700;
+}
+
+/* === Campos del formulario === */
+.login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #616061;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cdcdcf;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #611f69;
+  box-shadow: 0 0 0 3px rgba(97, 31, 105, 0.2);
+}
+
+/* === Botón === */
+.login-box button {
+  background-color: #611f69;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.login-box button:hover:not(:disabled) {
+  background-color: #4a154b;
+  transform: translateY(-1px);
+}
+
+.login-box button:disabled {
+  background-color: #cdcdcf;
+  cursor: not-allowed;
+}
+
+/* === Mensajes de error o éxito === */
+.login-box .success-message {
+  color: #007a5a;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.login-box .error-message {
+  color: #e01e5a;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* === Responsivo === */
+@media (max-width: 480px) {
+  .login-box {
+    margin: 0 16px;
+    padding: 30px 20px;
+  }
+}
