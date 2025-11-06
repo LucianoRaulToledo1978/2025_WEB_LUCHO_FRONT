@@ -1,0 +1,97 @@
+.invite-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #1a1d21;
+  color: #e3e3e3;
+  border: 1px solid #2e3136;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.invite-container:hover {
+  border-color: #6166dc;
+}
+
+.invite-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.invite-container input {
+  background-color: #222529;
+  color: #f0f0f0;
+  border: 1px solid #3a3f45;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.invite-container input:focus {
+  border-color: #6166dc;
+}
+
+.invite-container button {
+  background-color: #6166dc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.invite-container button:hover {
+  background-color: #7b7ff2;
+}
+
+.invite-container button:disabled {
+  background-color: #4d4f6c;
+  cursor: not-allowed;
+}
+
+.invite-container .cancel-btn {
+  background-color: transparent;
+  color: #bcbec4;
+  border: 1px solid #3b3f44;
+}
+
+.invite-container .cancel-btn:hover {
+  color: #ffffff;
+  border-color: #6166dc;
+}
+
+.invite-container .error-msg {
+  color: #ff5e5e;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.invite-container .success-msg {
+  color: #43d790;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.invite-button {
+  background-color: #3f46c3;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.invite-button:hover {
+  background-color: #565bdb;
+}
