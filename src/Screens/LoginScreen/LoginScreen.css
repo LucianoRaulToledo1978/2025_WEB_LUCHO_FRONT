@@ -108,3 +108,98 @@ body {
     padding: 30px 20px;
   }
 }
+/* === Adaptación para tablets (pantallas medianas) === */
+@media (max-width: 768px) {
+  body {
+    background-color: #f8f8fa;
+  }
+
+  .login-container {
+    padding: 20px;
+  }
+
+  .login-box {
+    max-width: 340px;
+    padding: 32px 24px;
+  }
+
+  .login-box h1 {
+    font-size: 1.6rem;
+  }
+
+  .login-box input {
+    font-size: 0.95rem;
+    padding: 9px 12px;
+  }
+
+  .login-box button {
+    font-size: 0.95rem;
+    padding: 9px;
+  }
+}
+
+/* === Adaptación para celulares grandes (max-width: 600px) === */
+@media (max-width: 600px) {
+  .login-container {
+    justify-content: flex-start;
+    padding-top: 80px;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 320px;
+    padding: 24px 18px;
+    box-shadow: none;
+    border: 1px solid #e4e4e6;
+  }
+
+  .login-box h1 {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  .login-box label {
+    font-size: 0.85rem;
+  }
+
+  .login-box input {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+
+  .login-box button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .login-box .error-message,
+  .login-box .success-message {
+    font-size: 0.85rem;
+  }
+}
+
+/* === Adaptación para celulares chicos (pantallas < 400px) === */
+@media (max-width: 400px) {
+  .login-box {
+    border-radius: 0;
+    padding: 20px 16px;
+  }
+
+  .login-box h1 {
+    font-size: 1.2rem;
+  }
+
+  .login-box button {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .login-box input {
+    font-size: 0.85rem;
+  }
+
+  .login-container {
+    padding: 0;
+    height: auto;
+  }
+}
