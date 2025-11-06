@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm'
 import useFetch from '../../hooks/useFetch'
 import { createWorkspace } from '../../services/workspaceService'
 import { useNavigate } from 'react-router'
+import './CreateWorkspaceScreen.css'
 
 const CreateWorkspaceScreen = () => {
     const navigation = useNavigate()
@@ -43,17 +44,22 @@ const CreateWorkspaceScreen = () => {
         onSubmit: onSubmit
     })
     return (
-        <div>
+        <div className="create-container">
+            <div className="create-box">
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="workspace_name">Nombre del espacio de trabajo</label>
                     <input type="text" name="workspace_name" id="workspace_name" value={form_state.workspace_name} onChange={handleInputChange} />
                 </div>
                 {
-                    error && <span style={{color: 'red'}}>{error.message}</span>
+                    error && <span className="error-message">{error.message}</span>
+                    /*error && <span style={{color: 'red'}}>{error.message}</span>*/
                 }
-                <button>Crear espacio de trabajo</button>
+                 {loading && <span className="loading">Creando espacio...</span>}
+
+                <button type="submit" disabled={loading}>Crear espacio de trabajo</button>
             </form>
+        </div>
         </div>
     )
 }
