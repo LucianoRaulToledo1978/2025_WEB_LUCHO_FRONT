@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useForm from '../../hooks/useForm'
 import { register } from '../../services/authService'
 import useFetch from '../../hooks/useFetch'
+import './RegisterScreen.css'
 
 const FORM_FIELDS = {
     NAME: 'name',
@@ -46,7 +47,8 @@ const RegisterScreen = () => {
 
      console.log(loading)
     return (
-        <div>
+        <div className="register-container">
+            <div className="register-box">
             <h1>Registrate</h1>
             <form onSubmit={handleSubmit}>
 
@@ -92,7 +94,8 @@ const RegisterScreen = () => {
                     </>
                     }
                     {
-                        error && <span style={{color: 'red'}}>{error.message}</span>
+                        error && <span className="error-message">{error.message}</span>
+                        /*error && <span style={{color: 'red'}}>{error.message}</span>*/
                     }
                 </div>
                 
@@ -100,6 +103,7 @@ const RegisterScreen = () => {
                
                 
             </form>
+        </div>
         </div>
     )
 }
