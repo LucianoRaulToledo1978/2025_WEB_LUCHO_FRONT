@@ -37,9 +37,13 @@ const WorkspaceDetailScreen = () => {
             <InviteUserForm workspace_id={workspace_id} />
 
         </div>
-        <button onClick={() => navigate(`/workspace/${workspace_id}/chat`)}>
-                Ir al Chat
-        </button>
+        <button 
+    disabled={!workspace_id}
+    onClick={() => navigate(`/workspace/${workspace_id}/chat`)}
+>
+    Ir al Chat
+</button>
+
         
         </div>
     )

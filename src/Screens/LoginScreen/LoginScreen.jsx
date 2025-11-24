@@ -83,17 +83,25 @@ export const LoginScreen = () => {
                     />
                 </div>
                 {
-                    !response
-                        ?
-                        <button type='submit' disabled={loading}>
-                            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-                        </button>
-                        :
-                        <>
-                            <button type='submit' disabled={true}>Sesión Iniciada</button>
-                            <span style={{ color: 'green' }}>{response.message}</span>
-                        </>
-                }
+    (!response || !response.ok)
+        ? (
+            <button type='submit' disabled={loading}>
+                {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            </button>
+        )
+        : (
+            <>
+                <button type='submit' disabled={true}>Sesión Iniciada</button>
+                <span style={{ color: 'green' }}>{response.message}</span>
+            </>
+        )
+}
+
+        
+
+
+                        
+                
                 {
                     error && <span className="error-message">{error.message}</span>
                     /*error && <span style={{ color: 'red' }}>{error.message}</span>*/
@@ -102,4 +110,4 @@ export const LoginScreen = () => {
         </div>
         </div>
     )
-}
+}       

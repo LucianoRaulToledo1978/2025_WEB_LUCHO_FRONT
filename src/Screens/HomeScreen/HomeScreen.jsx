@@ -34,6 +34,7 @@ const HomeScreen = () => {
                         <div className="workspace-card" key={elemento.workspace_id}>
                             <h2>{elemento.workspace_name}</h2>
                             <a href={`/workspace/${elemento.workspace_id}`}>Entrar</a>
+
                         </div>
                     )
                 }

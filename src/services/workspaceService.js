@@ -1,4 +1,5 @@
-import ENVIRONMENT from "../config/environment";
+import ENVIRONMENT from "../config/environment.js";
+
 
 import { getAuthorizationToken } from "../constants/http";
 
@@ -8,7 +9,7 @@ import axios from "axios";
 
 async function getWorkspaceList() {
     const response_http = await fetch(
-        ENVIRONMENT.URL_API + '/api/workspace',
+       `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}`,
         {
             method: 'GET',
             headers: {
@@ -30,7 +31,7 @@ async function createWorkspace(name, url_img = "") {
         name: name,
         url_img: url_img,
     };
-    const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspace", {
+    const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspace/ID", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -47,7 +48,9 @@ async function createWorkspace(name, url_img = "") {
 
 async function getWorkspaceById(workspace_id) {
     const response_http = await fetch(
-        `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}`,
+        `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}
+`
+,
         {
             method: "GET",
             headers: { Authorization: "Bearer " + getAuthorizationToken() },

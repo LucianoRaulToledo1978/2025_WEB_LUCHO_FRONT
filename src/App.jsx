@@ -33,10 +33,7 @@ function App() {
           element={<ChatScreen />} 
         />
 
-        <Route 
-          path="/workspace/:workspace_id/chat" 
-          element={<ChatScreen />} 
-        />
+        
 
 
       

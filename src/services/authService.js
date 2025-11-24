@@ -1,5 +1,5 @@
 import { CONTENT_TYPE_VALUES, HEADERS, HTTP_METHODS } from "../constants/http"
-import ENVIRONMENT from "../config/environment";
+import ENVIRONMENT from "../config/environment.js";
 
 
 
