@@ -6,6 +6,8 @@ import AuthMiddleware from './Middlewares/AuthMiddleware'
 import HomeScreen from './Screens/HomeScreen/HomeScreen'
 import CreateWorkspaceScreen from './Screens/CreateWorkspaceScreen/CreateWorkspaceScreen'
 import WorkspaceDetailScreen from './Screens/WorkspaceDetailScreen/WorkspaceDetailScreen'
+import ChatScreen from './Screens/ChatScreen/ChatScreen'
+
 
 function App() {
 
@@ -14,8 +16,8 @@ function App() {
     <Routes>
       
        <Route path='/' element={<LoginScreen/>} />
-       <Route path='/login' element={<LoginScreen/>} />
-     <Route path="/" element={<Navigate to="/register" />} /> {/* esto lo saque chatgtp*/ }
+       {/*<Route path='/login' element={<LoginScreen/>} />*/}
+     <Route path="/" element={<Navigate to="/login" />} /> {/* esto lo saque chatgtp*/ }
       <Route path='/register' element={<RegisterScreen/>} />
       <Route element={<AuthMiddleware/>}></Route>
        <Route path='/home' element={<HomeScreen/>}/>
@@ -24,6 +26,20 @@ function App() {
           element={<CreateWorkspaceScreen/>} 
         />
         <Route path='/workspace/:workspace_id' element={<WorkspaceDetailScreen/>}  />
+
+        {/* RUTA DEL CHAT */}
+        <Route 
+          path="/workspace/:workspace_id/chat" 
+          element={<ChatScreen />} 
+        />
+
+        <Route 
+          path="/workspace/:workspace_id/chat" 
+          element={<ChatScreen />} 
+        />
+
+
+      
         
     </Routes>  
   

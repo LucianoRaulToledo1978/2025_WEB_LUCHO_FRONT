@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import useFetch from '../../hooks/useFetch'
 import { getWorkspaceById } from '../../services/workspaceService'
 import InviteUserForm from '../../Components/InviteUserForm/InviteUserForm'
+import { useNavigate } from "react-router";
 
 const WorkspaceDetailScreen = () => {
     const { workspace_id } = useParams()
@@ -21,8 +22,12 @@ const WorkspaceDetailScreen = () => {
 
     console.log(response, error, loading)
 
+    const navigate = useNavigate();
+
+
 
     return (
+        <div>
         <div>
             {
                 response && (
@@ -31,6 +36,11 @@ const WorkspaceDetailScreen = () => {
             }
             <InviteUserForm workspace_id={workspace_id} />
 
+        </div>
+        <button onClick={() => navigate(`/workspace/${workspace_id}/chat`)}>
+                Ir al Chat
+        </button>
+        
         </div>
     )
 }
