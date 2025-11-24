@@ -9,7 +9,7 @@ import axios from "axios";
 
 async function getWorkspaceList() {
     const response_http = await fetch(
-       `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}`,
+       `${import.meta.env.VITE_API_URL}/api/workspace/${workspace_id}`,
         {
             method: 'GET',
             headers: {
@@ -31,7 +31,7 @@ async function createWorkspace(name, url_img = "") {
         name: name,
         url_img: url_img,
     };
-    const response_http = await fetch(ENVIRONMENT.URL_API + "/api/workspace/ID", {
+    const response_http = await fetch(import.meta.env.VITE_API_URL + "/api/workspace/ID", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -64,7 +64,7 @@ async function getWorkspaceById(workspace_id) {
 
 async function inviteUser (email, workspace_id){
     const response_http = await fetch(
-        ENVIRONMENT.URL_API + "/api/workspace/" + workspace_id + "/invite",
+        import.meta.env.VITE_API_URL + "/api/workspace/" + workspace_id + "/invite",
         {
             method: "POST",
             headers: {
