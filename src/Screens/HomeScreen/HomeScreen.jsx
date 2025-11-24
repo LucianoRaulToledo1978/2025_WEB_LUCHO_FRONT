@@ -17,6 +17,8 @@ const HomeScreen = () => {
     )
 
     console.log(response, loading, error)
+    console.log("RESPONSE COMPLETA:", response);
+
   return (
     <div className="home-container">
        

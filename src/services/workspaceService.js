@@ -1,7 +1,10 @@
-import ENVIRONMENT from "../config/envionment";
+import ENVIRONMENT from "../config/environment";
+
 import { getAuthorizationToken } from "../constants/http";
 
 import LOCALSTORAGE_KEYS from "../constants/localstorage";
+import axios from "axios";
+
 
 async function getWorkspaceList() {
     const response_http = await fetch(
@@ -44,20 +47,17 @@ async function createWorkspace(name, url_img = "") {
 
 async function getWorkspaceById(workspace_id) {
     const response_http = await fetch(
-        ENVIRONMENT.URL_API + "/api/workspace/" + workspace_id,
+        `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}`,
         {
             method: "GET",
-            headers: {
-                Authorization: "Bearer " + getAuthorizationToken(),
-            },
+            headers: { Authorization: "Bearer " + getAuthorizationToken() },
         }
     );
-    const response_data = await response_http.json();
-    if (!response_data.ok) {
-        throw new Error(response_data.message || "Error al obtener el workspace")
-    }
-    return response_data
+    return await response_http.json();
 }
+
+
+
 
 async function inviteUser (email, workspace_id){
     const response_http = await fetch(
