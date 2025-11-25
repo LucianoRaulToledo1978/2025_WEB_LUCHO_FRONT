@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import useFetch from '../../hooks/useFetch';
 import { getMessages, sendMessage } from '../../services/messageService';
 
+import './ChatScreen.css'
+
 const ChatScreen = () => {
     const { workspace_id } = useParams();
 
@@ -28,17 +30,11 @@ const ChatScreen = () => {
     };
 
     return (
-        <div style={{ padding: "20px" }}>
-            <h1>Chat del Workspace</h1>
+        <div className="chat-container">
+            <h1 className="chat-title">Chat del Workspace</h1>
 
             {/* MESSAGES */}
-            <div style={{
-                border: "1px solid #ccc",
-                height: "300px",
-                overflowY: "auto",
-                padding: "10px",
-                marginBottom: "20px"
-            }}>
+            <div className="chat-messages">
                 {
                     response?.data?.messages?.map(msg => (
                         <div key={msg._id} style={{ marginBottom: "10px" }}>
@@ -46,7 +42,8 @@ const ChatScreen = () => {
                         </div>
                     ))
                 }
-            </div>
+                </div>
+            <div className="chat-input-container">
 
             {/* INPUT */}
             <input
@@ -56,11 +53,12 @@ const ChatScreen = () => {
                 style={{ width: "70%", padding: "10px" }}
             />
 
-            <button onClick={handleSend} style={{ padding: "10px 20px", marginLeft: "10px" }}>
+            <button onClick={handleSend} className="chat-send-btn">
                 Enviar
             </button>
         </div>
-    );
-};
+        </div>
+    );}
+
 
 export default ChatScreen;
