@@ -99,7 +99,7 @@ const RegisterScreen = () => {
                 <button
                     type="button"
                     className="back-login-button"
-                    onClick={() => navigate('/login')}
+                    onClick={() => navigate('/')}
                 >
                     ¿Ya tenés cuenta? Iniciar Sesión
                 </button>
