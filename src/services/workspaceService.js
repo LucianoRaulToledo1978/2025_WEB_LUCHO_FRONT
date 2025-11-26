@@ -1,84 +1,87 @@
-import ENVIRONMENT from "../config/environment.js";
-
-
 import { getAuthorizationToken } from "../constants/http";
 
-import LOCALSTORAGE_KEYS from "../constants/localstorage";
-import axios from "axios";
-
-
 async function getWorkspaceList() {
-    const response_http = await fetch(
-       `${import.meta.env.VITE_API_URL}/api/workspace/${workspace_id}`,
-        {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + getAuthorizationToken()
-            }
-        }
-    )
-
-    const response_data = await response_http.json()
-    return response_data
-}
-
-/*
-createWorkspace(name, url_img = '')
-Consumir la api para crear un workspace
-*/
-async function createWorkspace(name, url_img = "") {
-    const body = {
-        name: name,
-        url_img: url_img,
-    };
-    const response_http = await fetch(import.meta.env.VITE_API_URL + "/api/workspace/ID", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json",
-            'Authorization': `Bearer ${getAuthorizationToken()}`
-        },
-        body: JSON.stringify(body),
-    });
-    const response_data = await response_http.json();
-    if (!response_data.ok) {
-        throw new Error(response_data.message)
-    }
-    return response_data;
-}
-
-async function getWorkspaceById(workspace_id) {
-    const response_http = await fetch(
-        `${ENVIRONMENT.URL_API}/api/workspace/${workspace_id}
-`
-,
+    const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/workspace`,
         {
             method: "GET",
-            headers: { Authorization: "Bearer " + getAuthorizationToken() },
+            headers: {
+                "Authorization": "Bearer " + getAuthorizationToken(),
+                "Content-Type": "application/json"
+            }
         }
     );
-    return await response_http.json();
+
+    return await response.json();
 }
 
+// Crear un workspace (CORRECTO)
+async function createWorkspace(name, url_img = "") {
+    const body = { name, url_img };
 
-
-
-async function inviteUser (email, workspace_id){
-    const response_http = await fetch(
-        import.meta.env.VITE_API_URL + "/api/workspace/" + workspace_id + "/invite",
+    const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/workspace`,
         {
             method: "POST",
             headers: {
-                "Content-type": "application/json",
-                'Authorization': `Bearer ${getAuthorizationToken()}`
+                "Authorization": "Bearer " + getAuthorizationToken(),
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({invited_email: email})
+            body: JSON.stringify(body)
         }
-    )
-    const response_data = await response_http.json()
-    if (!response_data.ok) {
-        throw new Error(response_data.message)
+    );
+
+    const data = await response.json();
+
+    if (!data.ok) {
+        throw new Error(data.message);
     }
-    return response_data
+
+    return data;
 }
 
-export { getWorkspaceList, createWorkspace, getWorkspaceById, inviteUser}
+// Obtener workspace por ID
+async function getWorkspaceById(workspace_id) {
+    const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/workspace/${workspace_id}`,
+        {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + getAuthorizationToken(),
+                "Content-Type": "application/json"
+            }
+        }
+    );
+
+    return await response.json();
+}
+
+// Invitar usuario
+async function inviteUser(email, workspace_id) {
+    const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/workspace/${workspace_id}/invite`,
+        {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + getAuthorizationToken(),
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ invited_email: email })
+        }
+    );
+
+    const data = await response.json();
+
+    if (!data.ok) {
+        throw new Error(data.message);
+    }
+
+    return data;
+}
+
+export {
+    getWorkspaceList,
+    createWorkspace,
+    getWorkspaceById,
+    inviteUser
+};
