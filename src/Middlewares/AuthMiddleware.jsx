@@ -3,15 +3,14 @@ import LOCALSTORAGE_KEYS from '../constants/localstorage'
 import { Navigate, Outlet } from 'react-router'
 
 const AuthMiddleware = () => {
-    //Obtenemos un elemento del localStorage
-    const auth_token = localStorage.getItem(LOCALSTORAGE_KEYS.AUTH_TOKEN)
-    if(auth_token){
-        return <Outlet/>
-    }
-    else{
-        return <Navigate to={'/login'}/>
-    }
-    
-}
+    const auth_token = localStorage.getItem(LOCALSTORAGE_KEYS.AUTH_TOKEN);
 
-export default AuthMiddleware
+    if (auth_token) {
+        return <Outlet />;
+    }
+
+    // tu login está en "/"
+    return <Navigate to="/" />;
+};
+
+export default AuthMiddleware;

@@ -1,52 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import useFetch from '../../hooks/useFetch'
-import { getWorkspaceById } from '../../services/workspaceService'
-import InviteUserForm from '../../Components/InviteUserForm/InviteUserForm'
-import { useNavigate } from "react-router";
+import React, { useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router';
+import useFetch from '../../hooks/useFetch';
+import { getWorkspaceById } from '../../services/workspaceService';
+import InviteUserForm from '../../Components/InviteUserForm/InviteUserForm';
 
 const WorkspaceDetailScreen = () => {
-    const { workspace_id } = useParams()
 
-    const { sendRequest, response, error, loading } = useFetch()
-    useEffect(
-        () => {
-            sendRequest(
-                async () => {
-                    return await getWorkspaceById(workspace_id)
-                }
-            )
-        },
-        [workspace_id]
-    )
-
-    console.log(response, error, loading)
-
+    const { workspace_id } = useParams();
+    const { response, loading, error, sendRequest } = useFetch();
     const navigate = useNavigate();
 
-
+    useEffect(() => {console.log("RESPONSE WORKSPACE:", response);
+    console.log("ERROR WORKSPACE:", error);
+        sendRequest(() => getWorkspaceById(workspace_id));
+    }, [workspace_id]);
 
     return (
         <div>
-        <div>
-            {
-                response && (
-                    <h1>Workspace Seleccionado: {response.data.workspace.name}</h1>
-                )
-            }
+            <h1>
+                Workspace Seleccionado: 
+                {response?.data?.workspace?.name ?? "Cargando..."}
+            </h1>
+
             <InviteUserForm workspace_id={workspace_id} />
 
+            <button onClick={() => navigate(`/workspace/${workspace_id}/chat`)}>
+                Ir al Chat
+            </button>
         </div>
-        <button 
-    disabled={!workspace_id}
-    onClick={() => navigate(`/workspace/${workspace_id}/chat`)}
->
-    Ir al Chat
-</button>
-
-        
-        </div>
-    )
+    );
 }
 
-export default WorkspaceDetailScreen
+export default WorkspaceDetailScreen;
