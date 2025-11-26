@@ -1,6 +1,6 @@
 import { getAuthorizationToken } from "../constants/http";
 
-async function getWorkspaceList() {
+async function getWorkspaces() {
     const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/workspace`,
         {
@@ -15,7 +15,6 @@ async function getWorkspaceList() {
     return await response.json();
 }
 
-// Crear un workspace (CORRECTO)
 async function createWorkspace(name, url_img = "") {
     const body = { name, url_img };
 
@@ -40,7 +39,6 @@ async function createWorkspace(name, url_img = "") {
     return data;
 }
 
-// Obtener workspace por ID
 async function getWorkspaceById(workspace_id) {
     const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/workspace/${workspace_id}`,
@@ -56,7 +54,6 @@ async function getWorkspaceById(workspace_id) {
     return await response.json();
 }
 
-// Invitar usuario
 async function inviteUser(email, workspace_id) {
     const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/workspace/${workspace_id}/invite`,
@@ -80,7 +77,7 @@ async function inviteUser(email, workspace_id) {
 }
 
 export {
-    getWorkspaceList,
+    getWorkspaces,
     createWorkspace,
     getWorkspaceById,
     inviteUser
