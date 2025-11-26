@@ -107,6 +107,15 @@ export const LoginScreen = () => {
                     /*error && <span style={{ color: 'red' }}>{error.message}</span>*/
                 }
             </form>
+
+            {/* 🔵 Botón para ir al registro */}
+            <button 
+                type="button" 
+                className="register-button"
+                onClick={() => navigate('/register')}
+>
+                ¿No tenés cuenta? Registrate
+            </button>
         </div>
         </div>
     )

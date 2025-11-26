@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import useForm from '../../hooks/useForm'
 import { register } from '../../services/authService'
 import useFetch from '../../hooks/useFetch'
+import { useNavigate } from 'react-router'
 import './RegisterScreen.css'
 
 const FORM_FIELDS = {
@@ -9,6 +10,7 @@ const FORM_FIELDS = {
     EMAIL: 'email',
     PASSWORD: 'password'
 }
+
 const initial_form_state = {
     [FORM_FIELDS.NAME]: '',
     [FORM_FIELDS.EMAIL]: '',
@@ -16,6 +18,8 @@ const initial_form_state = {
 }
 
 const RegisterScreen = () => {
+
+    const navigate = useNavigate()
 
     const {
         sendRequest,
@@ -25,85 +29,81 @@ const RegisterScreen = () => {
     } = useFetch()
 
     const onRegister = (form_state) => {
-        sendRequest( () => {
-        return register(
-                form_state[FORM_FIELDS.NAME], 
-                form_state[FORM_FIELDS.EMAIL], 
+        sendRequest(() => {
+            return register(
+                form_state[FORM_FIELDS.NAME],
+                form_state[FORM_FIELDS.EMAIL],
                 form_state[FORM_FIELDS.PASSWORD]
             )
         })
-    }   
+    }
 
     const {
         form_state: register_form_state,
         handleSubmit,
         handleInputChange
-    } = useForm(
-        {
-            initial_form_state,
-            onSubmit: onRegister
-        }
-    )
+    } = useForm({
+        initial_form_state,
+        onSubmit: onRegister
+    })
 
-     console.log(loading)
     return (
         <div className="register-container">
             <div className="register-box">
-            <h1>Registrate</h1>
-            <form onSubmit={handleSubmit}>
+                <h1>Registrate</h1>
 
-                <div>
-                    <label htmlFor={FORM_FIELDS.NAME} >Nombre:</label>
-                    <input
-                        name={FORM_FIELDS.NAME}
-                        id={FORM_FIELDS.NAME}
-                        type='text'
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor={FORM_FIELDS.NAME}>Nombre:</label>
+                        <input
+                            name={FORM_FIELDS.NAME}
+                            id={FORM_FIELDS.NAME}
+                            type='text'
+                            onChange={handleInputChange}
+                        />
+                    </div>
 
+                    <div>
+                        <label htmlFor={FORM_FIELDS.EMAIL}>Email:</label>
+                        <input
+                            name={FORM_FIELDS.EMAIL}
+                            id={FORM_FIELDS.EMAIL}
+                            type='email'
+                            onChange={handleInputChange}
+                        />
+                    </div>
 
-                    <label htmlFor={FORM_FIELDS.EMAIL} >Email:</label>
-                    <input
-                        name={FORM_FIELDS.EMAIL}
-                        id={FORM_FIELDS.EMAIL}
-                        type='email'
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor={FORM_FIELDS.PASSWORD} >Contraseña:</label>
-                    <input
-                        name={FORM_FIELDS.PASSWORD}
-                        id={FORM_FIELDS.PASSWORD}
-                        type='password'
-                        onChange={handleInputChange}
-                    />
-
-                </div>
-
-                <div>
+                    <div>
+                        <label htmlFor={FORM_FIELDS.PASSWORD}>Contraseña:</label>
+                        <input
+                            name={FORM_FIELDS.PASSWORD}
+                            id={FORM_FIELDS.PASSWORD}
+                            type='password'
+                            onChange={handleInputChange}
+                        />
+                    </div>
 
                     {
-                    !response
-                    ? <button type='submit' disabled={loading}>Registrarse</button>
-                    : <>
-                        <button type='submit' disabled={true}>Registrado</button>
-                        <span style={{color: 'green'}}>{response.message}</span>
-                    </>
+                        !response
+                            ? <button type='submit' disabled={loading}>Registrarse</button>
+                            : <>
+                                <button type='submit' disabled={true}>Registrado</button>
+                                <span style={{ color: 'green' }}>{response.message}</span>
+                              </>
                     }
-                    {
-                        error && <span className="error-message">{error.message}</span>
-                        /*error && <span style={{color: 'red'}}>{error.message}</span>*/
-                    }
-                </div>
-                
-               
-               
-                
-            </form>
-        </div>
+
+                    {error && <span className="error-message">{error.message}</span>}
+                </form>
+
+                {/* 🔵 Botón para volver al login */}
+                <button
+                    type="button"
+                    className="back-login-button"
+                    onClick={() => navigate('/login')}
+                >
+                    ¿Ya tenés cuenta? Iniciar Sesión
+                </button>
+            </div>
         </div>
     )
 }

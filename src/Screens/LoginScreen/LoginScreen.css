@@ -101,6 +101,26 @@ body {
   margin-top: 10px;
 }
 
+.register-button {
+    margin-top: 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+}
+
+.register-button:hover {
+    background-color: #357ABD;
+}
+
+
+
+
+
 /* === Responsivo === */
 @media (max-width: 480px) {
   .login-box {
