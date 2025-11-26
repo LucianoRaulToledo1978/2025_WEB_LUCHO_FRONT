@@ -1,166 +1,93 @@
-/* === Estilo general tipo Slack === */
-body {
-  background-color: #f8f8fa;
-  font-family: 'Inter', 'Lato', 'Helvetica Neue', sans-serif;
-  color: #1d1c1d;
-  margin: 0;
-  padding: 0;
-}
-
-/* === Contenedor principal === */
+/* ====== ESTILO GENERAL ====== */
 .home-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    height: 100vh;
+    background-color: #f7f7f7;
+    font-family: "Arial", sans-serif;
 }
 
-/* === Título === */
-.home-container h1 {
-  font-size: 2rem;
-  color: #1d1c1d;
-  font-weight: 700;
-  margin-bottom: 32px;
-  text-align: center;
-}
-
-/* === Lista de workspaces === */
+/* ====== SIDEBAR ESTILO SLACK ====== */
 .workspace-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  width: 100%;
-  margin-bottom: 40px;
+    width: 260px;
+    background-color: #3f0e40; /* Slack morado */
+    padding: 20px 0;
+    list-style: none;
+    margin: 0;
+    overflow-y: auto;
+    color: #fff;
 }
 
-/* === Tarjeta de workspace === */
-.workspace-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(29, 28, 29, 0.08);
-  padding: 24px;
-  text-align: center;
-  transition: all 0.2s ease-in-out;
-  border: 1px solid rgba(97, 31, 105, 0.1);
+.workspace-list::-webkit-scrollbar {
+    width: 6px;
 }
 
-.workspace-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 28px rgba(29, 28, 29, 0.15);
+.workspace-list::-webkit-scrollbar-thumb {
+    background-color: #5c2560;
+    border-radius: 3px;
 }
 
-/* === Título del workspace === */
-.workspace-card h2 {
-  font-size: 1.2rem;
-  color: #1d1c1d;
-  margin-bottom: 16px;
-  font-weight: 600;
-  word-wrap: break-word;
+/* ====== ÍTEMS DE LA LISTA ====== */
+.workspace-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    color: #ffffffd9;
+    font-size: 15px;
+    transition: background 0.2s ease, padding-left 0.2s ease;
 }
 
-/* === Botón "Entrar" === */
-.workspace-card a {
-  display: inline-block;
-  background-color: #611f69;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
+.workspace-item:hover {
+    background-color: #532753;
+    padding-left: 25px;
+    color: #fff;
 }
 
-.workspace-card a:hover {
-  background-color: #4a154b;
-  transform: translateY(-2px);
+/* ====== CONTENIDO PRINCIPAL ====== */
+.home-main {
+    flex: 1;
+    padding: 30px;
 }
 
-/* === Enlace para crear nuevo workspace === */
-.new-workspace-link {
-  display: inline-block;
-  background-color: #fff;
-  border: 2px solid #611f69;
-  color: #611f69;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  text-align: center;
+.home-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.new-workspace-link:hover {
-  background-color: #611f69;
-  color: #fff;
-  transform: translateY(-2px);
+/* ====== BOTÓN CREAR WORKSPACE ====== */
+.create-workspace-button {
+    background-color: #611f69;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 15px;
+    transition: background 0.2s ease;
 }
 
-/* === Mensajes de estado === */
-.loading,
-.error {
-  text-align: center;
-  font-weight: 500;
-  margin-top: 20px;
+.create-workspace-button:hover {
+    background-color: #4a1650;
 }
 
-.loading {
-  color: #611f69;
-}
-
-.error {
-  color: #e01e5a;
-}
-
-/* === Responsivo === */
-
-/* Tablets (pantallas medianas) */
+/* ====== RESPONSIVE ====== */
 @media (max-width: 768px) {
-  .home-container {
-    padding: 32px 16px;
-  }
+    .home-container {
+        flex-direction: column;
+    }
 
-  .workspace-list {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-  }
+    .workspace-list {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+    }
 
-  .workspace-card {
-    padding: 18px;
-  }
-}
+    .workspace-item {
+        padding: 10px 14px;
+        white-space: nowrap;
+    }
 
-/* Celulares (pantallas pequeñas) */
-@media (max-width: 480px) {
-  .home-container {
-    padding: 24px 12px;
-  }
-
-  .home-container h1 {
-    font-size: 1.6rem;
-  }
-
-  .workspace-list {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .workspace-card {
-    padding: 16px;
-  }
-
-  .workspace-card h2 {
-    font-size: 1rem;
-  }
-
-  .workspace-card a {
-    padding: 8px 14px;
-    font-size: 0.9rem;
-  }
-
-  .new-workspace-link {
-    width: 100%;
-    padding: 10px;
-  }
+    .home-main {
+        padding: 20px;
+    }
 }

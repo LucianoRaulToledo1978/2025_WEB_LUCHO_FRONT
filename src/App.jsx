@@ -18,6 +18,8 @@ function App() {
        <Route path='/' element={<LoginScreen/>} />
        {/*<Route path='/login' element={<LoginScreen/>} />*/}
      {/*<Route path="/" element={<Navigate to="/login" />} /> {/* esto lo saque chatgtp*/ }
+      
+      
       <Route path='/register' element={<RegisterScreen/>} />
       <Route element={<AuthMiddleware/>}></Route>
        <Route path='/home' element={<HomeScreen/>}/>

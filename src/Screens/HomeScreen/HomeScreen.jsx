@@ -1,52 +1,48 @@
-import React, { useEffect } from 'react'
-import useFetch from '../../hooks/useFetch'
-import { getWorkspaceList } from '../../services/workspaceService'
-import { Link } from 'react-router'
-import './HomeScreen.css'
+import React, { useEffect } from 'react';
+import useFetch from '../../hooks/useFetch';
+import { getWorkspaces } from '../../services/workspaceService';
+import { useNavigate } from 'react-router';
+import './HomeScreen.css';
 
 const HomeScreen = () => {
-    const {loading, response, error, sendRequest} = useFetch()
+    const navigate = useNavigate();
+    const { response, loading, error, sendRequest } = useFetch();
 
-    useEffect(
-        () => {
-            sendRequest(
-                getWorkspaceList
-            )
-        },
-        []
-    )
+    useEffect(() => {
+        sendRequest(() => getWorkspaces());
+    }, []);
 
-    console.log(response, loading, error)
-    console.log("RESPONSE COMPLETA:", response);
+    return (
+        <div className="home-container">
 
-  return (
-    <div className="home-container">
-       
-        <h1>Espacios de trabajo</h1>
-        {loading && <div className="loading">Cargando espacios...</div>}
-         {error && <div className="error">Error: {error.message}</div>}
+    {/* Sidebar estilo Slack */}
+    <ul className="workspace-list">
+        {response && response.data ? (
+            response.data.map((ws) => (
+                <li 
+                    key={ws._id}
+                    className="workspace-item"
+                    onClick={() => navigate(`/workspace/${ws._id}`)}
+                >
+                    {ws.workspace_name}
+                </li>
+            ))
+        ) : <p style={{ padding: "10px 20px" }}>Sin espacios aún</p>}
+    </ul>
 
-         <div className="workspace-list">
-        {
-            !loading && response &&  response.data.workspaces.map(
-                (elemento) => {
-                    return (
-                        <div className="workspace-card" key={elemento.workspace_id}>
-                            <h2>{elemento.workspace_name}</h2>
-                            <a href={`/workspace/${elemento.workspace_id}`}>Entrar</a>
+    {/* Contenido principal */}
+    <div className="home-main">
+        <h1 className="home-title">Mis espacios de trabajo</h1>
 
-                        </div>
-                    )
-                }
-            )
-        }
+        <button
+            className="create-workspace-button"
+            onClick={() => navigate('/workspace/new')}
+        >
+            Crear nuevo espacio
+        </button>
         </div>
+        </div>
+    );
+};
 
-         <Link to='/workspace/new' className="new-workspace-link">
-            Crear nuevo espacio de trabajo
-        </Link>
-    </div>
-  )
-}
-
-export default HomeScreen
+export default HomeScreen;
