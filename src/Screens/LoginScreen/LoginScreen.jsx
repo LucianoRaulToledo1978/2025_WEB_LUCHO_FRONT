@@ -62,6 +62,8 @@ export const LoginScreen = () => {
     return (
         <div className="login-container">
             <div className="login-box">
+                {/* ⭐ TÍTULO DE BIENVENIDA */}
+                <h2 className="welcome-title">¡Bienvenido a tu App de Mensajería!</h2>
             <h1>Iniciar Sesión</h1>
             <form onSubmit={handleSubmit}>
                 <div>
